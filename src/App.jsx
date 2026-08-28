@@ -16,6 +16,7 @@ import Aboutus from "./components/Aboutus";
 import Faq from "./components/Faq";
 import Cart from "./components/Cart";
 import Checkout from "./components/Checkout";
+import MenuDetail from "./components/MenuDetail";
 
 function Home() {
   return (
@@ -46,6 +47,7 @@ function App() {
   <Route path="/faq" element={<Faq />} />
   <Route path="/cart" element={<Cart />} />
   <Route path="/checkout" element={<Checkout />} />
+  <Route path="/menu/:id" element={<MenuDetail />} />
 </Routes>
   );
 }

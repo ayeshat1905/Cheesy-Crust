@@ -67,7 +67,7 @@ const Masterchef = () => {
         "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ0WhmmkQJ2bg9WF5osxK94Z5UBARtgYmIxwjTxuEME-w&s",
     },
   ];
-
+console.log("sliderRef", sliderRef.current)
   const scrollLeft = () => {
     if (sliderRef.current) {
       sliderRef.current.scrollBy({
