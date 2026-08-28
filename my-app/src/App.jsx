@@ -1,27 +1,3 @@
-
-// import Footer from "./components/Footer"
-// import Contactus from "./components/Contactus"
-// import React from 'react'
-// import Navbar from "./components/Navbar"
-
-// function App() {
-//   return (
-//     <div>
-//       <Navbar />
-
-//       <Routes>
-//         <Route path="/" element={<Home />} />
-//         <Route path="/contact" element={<Contactus />} />
-//       </Routes>
-
-//       <Footer />
-//     </div>
-//   )
-// }
-
-// export default App
-
-
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 
@@ -70,7 +46,6 @@ function App() {
   <Route path="/faq" element={<Faq />} />
   <Route path="/cart" element={<Cart />} />
   <Route path="/checkout" element={<Checkout />} />
-  <Route path="/menu" element={<Menu />} />
 </Routes>
   );
 }

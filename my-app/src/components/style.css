@@ -1,3 +1,13 @@
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+body.nav-locked {
+  overflow: hidden;
+}
+
 .navbar {
   height: 70px;
   background-color: #f9f7ee;
@@ -112,6 +122,130 @@
   align-items: center;
   gap: 15px;
   margin-right: 80px;
+}
+
+.menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  background: #ffffff;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+}
+
+.menu-toggle span {
+  display: block;
+  width: 18px;
+  height: 2px;
+  background: #222;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.menu-toggle.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+  .mobile-menu-overlay {
+    display: none;
+  }
+
+  .mobile-nav {
+    display: none;
+  }
+
+.account-wrap {
+  position: relative;
+}
+
+.account-btn {
+  font-size: 16px;
+  font-weight: 700;
+  color: #87805e;
+}
+
+.account-dropdown {
+  position: absolute;
+  top: calc(100% + 10px);
+  right: 0;
+  min-width: 210px;
+  padding: 14px 16px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  text-align: left;
+  z-index: 1200;
+}
+
+.account-name {
+  margin: 0;
+  color: #222;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.account-email {
+  margin: 4px 0 12px;
+  color: #888;
+  font-size: 12px;
+  word-break: break-word;
+}
+
+.account-dropdown button {
+  width: 100%;
+  height: 38px;
+  border: none;
+  border-radius: 6px;
+  background: #87805e;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-message,
+.form-status {
+  margin: 0 0 16px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  line-height: 1.5;
+  text-align: left;
+}
+
+.auth-message.error,
+.form-status.error {
+  background: #fdecea;
+  color: #b42318;
+}
+
+.form-status.success {
+  background: #ecfdf3;
+  color: #067647;
+}
+
+.reservation .form-status {
+  max-width: 520px;
+  margin: 18px auto 0;
+  text-align: center;
+}
+
+.reservation-form .form-status {
+  grid-column: 1 / -1;
 }
 
 .carts-btn,
@@ -332,8 +466,20 @@
  font-weight: bold;
  font-size: 16px;
 }
+
 @media (max-width: 500px) {
-  
+  .login-panel {
+    width: 100%;
+    padding: 45px 24px 35px;
+  }
+
+  .login-content h1 {
+    font-size: 28px;
+  }
+
+  .login-close {
+    right: 16px;
+  }
 }
 
 
@@ -3688,6 +3834,10 @@ margin: 0 0 15px 15px;
 
   
 }
+
+
+
+
 /* =========================================
    FAQ PAGE
 ========================================= */
@@ -5561,4 +5711,986 @@ margin: 0 0 15px 15px;
     height: 65px;
   }
 
+}
+
+
+/* =========================================
+   GLOBAL RESPONSIVE
+========================================= */
+
+@media (max-width: 1200px) {
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .logo {
+    margin-left: 0;
+  }
+
+  .nav-actions {
+    margin-right: 0;
+  }
+
+  .menu-container {
+    padding-left: 60px;
+    padding-right: 60px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .menu-card {
+    flex: 1 1 calc(50% - 20px);
+    max-width: calc(50% - 10px);
+    min-width: 260px;
+  }
+
+  .todays-menu-page .menu-containers {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .services-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .menu-content {
+    width: 92%;
+    padding: 70px 0 30px 40px;
+    grid-template-columns: 1fr 1fr 220px;
+    gap: 35px;
+  }
+
+  .menu-food-image img {
+    width: 480px;
+    height: 520px;
+    margin-right: -120px;
+  }
+
+  .footer-container {
+    column-gap: 40px;
+  }
+}
+
+@media (max-width: 992px) {
+  .navbar {
+    padding: 0 20px;
+    height: 70px;
+    min-height: 70px;
+    flex-wrap: nowrap;
+  }
+
+  .logo {
+    min-width: auto;
+    margin-left: 0;
+  }
+
+  .logo img {
+    width: 52px;
+    height: 52px;
+  }
+
+  .nav-actions {
+    margin-right: 0;
+    gap: 10px;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .mobile-menu-overlay {
+    display: block;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.4);
+    z-index: 1400;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 70px;
+    left: 16px;
+    right: 16px;
+    z-index: 1500;
+    background: #ffffff;
+    border-radius: 14px;
+    padding: 10px 0;
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  }
+
+  .mobile-nav a {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    color: #222;
+    font-size: 16px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  .mobile-nav a.active,
+  .mobile-nav a:hover {
+    color: #87805e;
+    background: #f9f7ee;
+  }
+
+  .login-panel {
+    width: 100%;
+    max-width: 420px;
+    padding: 45px 30px 35px;
+  }
+
+  .test-wrapper {
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 24px;
+    gap: 30px;
+    min-height: auto;
+  }
+
+  .test-station {
+    width: 100%;
+    padding-left: 0;
+    margin-top: 20px;
+  }
+
+  .content {
+    max-width: 100%;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .content h1 {
+    font-size: 42px;
+  }
+
+  .description {
+    font-size: 17px;
+    margin-bottom: 30px;
+  }
+
+  .buttons {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .image-section {
+    width: 100%;
+    min-height: 380px;
+  }
+
+  .image-section img:first-child {
+    width: 320px;
+    height: 320px;
+  }
+
+  .image-section img:nth-child(2) {
+    width: 380px;
+    height: 380px;
+    right: 0;
+  }
+
+  .slide-controls {
+    margin-left: 0;
+    left: 10px;
+  }
+
+  .arrow-doodle {
+    display: none;
+  }
+
+  .menu-header h1,
+  .todays-menu-page .menu-header h1 {
+    font-size: 40px;
+  }
+
+  .menu-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+
+  .menu-card {
+    flex: 1 1 calc(50% - 10px);
+    max-width: none;
+    height: 420px;
+  }
+
+  .bimage,
+  .wimage {
+    display: none;
+  }
+
+  .todays-menu-page .menu-containers {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .limage,
+  .pimage {
+    display: none;
+  }
+
+  .services-header h1 {
+    font-size: 42px;
+  }
+
+  .service-card {
+    height: 280px;
+    padding: 35px 20px;
+  }
+
+  .menuSliders-header h1,
+  .masterchef-header h1 {
+    font-size: 44px;
+  }
+
+  .menuSliders-track,
+  .masterchef-track {
+    max-width: calc(100% - 100px);
+  }
+
+  .menuSliders-left,
+  .masterchef-left {
+    left: 12px;
+    margin-left: 0;
+  }
+
+  .menuSliders-right,
+  .masterchef-right {
+    right: 12px;
+    margin-right: 0;
+  }
+
+  .reservation-heading h1 {
+    font-size: 44px;
+    margin-bottom: 50px;
+  }
+
+  .reservation-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .reservation-button {
+    grid-column: 1 / -1;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr 1fr;
+    width: 92%;
+  }
+
+  .footer-column:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .peanuts,
+  .tomatoes {
+    width: 120px;
+    opacity: 0.6;
+  }
+
+  .contact-hero,
+  .menu-hero,
+  .cart-hero,
+  .checkout-hero {
+    height: 360px;
+  }
+
+  .contact-hero-content h1,
+  .menu-hero-content h1,
+  .cart-hero-content h1,
+  .checkout-hero-content h1 {
+    font-size: 44px;
+  }
+
+  .contact-info-wrapper {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-card-icon {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .contact-reservation {
+    margin: 30px 20px;
+    padding: 30px 24px;
+  }
+
+  .reservation-container h2 {
+    font-size: 38px;
+  }
+
+  .menu-content {
+    grid-template-columns: 1fr 1fr;
+    padding: 60px 20px 30px;
+    width: 94%;
+  }
+
+  .menu-food-image {
+    grid-column: 1 / -1;
+    min-height: 420px;
+    order: -1;
+  }
+
+  .menu-food-image img {
+    width: 360px;
+    height: 400px;
+    margin-right: 0;
+  }
+
+  .menus-food-image {
+    display: none;
+  }
+
+  .menu-three-columns {
+    width: 94%;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .carts-btn,
+  .login-btn,
+  .menu-toggle {
+    width: 42px;
+    height: 42px;
+    font-size: 20px;
+    padding: 8px;
+  }
+
+  .content h1 {
+    font-size: 34px;
+  }
+
+  .small-title {
+    font-size: 16px;
+  }
+
+  .buttons button {
+    width: 150px;
+    height: 52px;
+    font-size: 15px;
+  }
+
+  .image-section {
+    min-height: 200px;
+  }
+
+  .image-section img:first-child {
+    width: 260px;
+    height: 260px;
+  }
+
+  .image-section img:nth-child(2) {
+    width: 260px;
+    height: 260px;
+  }
+
+  .menu-header,
+  .todays-menu-page .menu-header {
+    margin-top: 30px;
+    margin-bottom: 35px;
+  }
+
+  .menu-header h1,
+  .todays-menu-page .menu-header h1 {
+    font-size: 34px;
+  }
+
+  .menu-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .menu-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    text-align: -webkit-center;
+  }
+
+  .todays-menu-page {
+    padding: 50px 20px 45px;
+  }
+
+  .todays-menu-page .menu-containers {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+  }
+
+  .quality-services {
+    padding: 45px 20px 60px;
+  }
+
+  .services-header {
+    margin-bottom: 40px;
+  }
+
+  .services-header h1 {
+    font-size: 36px;
+  }
+
+  .services-container {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card.active {
+    transform: none;
+  }
+
+  .menuSliders-section,
+  .masterchef-section {
+    padding: 50px 0 60px;
+  }
+
+  .menuSliders-header,
+  .masterchef-header {
+    margin-bottom: 40px;
+    padding: 0 20px;
+  }
+
+  .menuSliders-header h1,
+  .masterchef-header h1 {
+    font-size: 36px;
+  }
+
+  .menuSliders-track,
+  .masterchef-track {
+    max-width: calc(100% - 70px);
+    gap: 18px;
+  }
+
+  .menuSliders-card {
+    flex: 0 0 230px;
+    width: 230px;
+    min-width: 230px;
+    height: 290px;
+  }
+
+  .masterchef-card {
+    flex: 0 0 240px;
+    width: 240px;
+    min-width: 240px;
+    height: 390px;
+  }
+
+  .reservation {
+    padding: 60px 0;
+    min-height: auto;
+  }
+
+  .reservation-heading h1 {
+    font-size: 36px;
+    margin-bottom: 35px;
+  }
+
+  .reservation-row {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .reservation-input {
+    height: 52px;
+  }
+
+  .reservation-input input {
+    font-size: 16px;
+  }
+
+  .reservation-button {
+    width: 100%;
+  }
+
+  .reservation-button button {
+    width: 100%;
+    height: 58px;
+  }
+
+  .footer {
+    padding-top: 50px;
+  }
+
+  .footer-container {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 35px;
+    padding-bottom: 40px;
+  }
+
+  .footer-column h3 {
+    margin-bottom: 24px;
+    font-size: 22px;
+  }
+
+  .peanuts,
+  .tomatoes {
+    display: none;
+  }
+
+  .contact-hero,
+  .menu-hero,
+  .about-hero,
+  .faq-hero,
+  .cart-hero,
+  .checkout-hero {
+    height: 320px;
+  }
+
+  .contact-hero-content h1,
+  .menu-hero-content h1 {
+    font-size: 38px;
+    margin-bottom: 30px;
+  }
+
+  .contact-info-section {
+    padding: 50px 20px;
+    margin-top: 30px;
+  }
+
+  .contact-info-wrapper {
+    grid-template-columns: 1fr;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .contact-reservation {
+    margin: 24px 16px;
+    border-radius: 24px;
+  }
+
+  .reservation-form {
+    grid-template-columns: 1fr;
+  }
+
+  .reservation-container h2 {
+    font-size: 32px;
+    padding: 20px;
+  }
+
+  .menu-content {
+    grid-template-columns: 1fr;
+    padding: 50px 10px 20px;
+  }
+
+  .menu-column h2,
+  .menu-small-column h2 {
+    font-size: 28px;
+  }
+
+  .menu-three-columns {
+    grid-template-columns: 1fr;
+    padding: 50px 5px 20px;
+    gap: 35px;
+  }
+
+  .menu-food-image {
+    min-height: 320px;
+  }
+
+  .menu-food-image img {
+    width: 280px;
+    height: 310px;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar {
+    padding: 0 12px;
+    height: 64px;
+  }
+
+  .mobile-menu-overlay,
+  .mobile-nav {
+    top: 64px;
+  }
+
+  .mobile-nav {
+    left: 12px;
+    right: 12px;
+  }
+
+  .mobile-nav a {
+    font-size: 15px;
+    padding: 13px 16px;
+  }
+
+  .logo img {
+    width: 46px;
+    height: 46px;
+  }
+
+  .login-content h1 {
+    font-size: 26px;
+  }
+
+  .login-subtitle {
+    font-size: 13px;
+  }
+
+  .test-wrapper {
+    margin-top: 64px;
+    padding: 30px 16px;
+  }
+
+  .content h1 {
+    font-size: 24px;
+    line-height: 1.3;
+  }
+
+  .description {
+    font-size: 13px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .buttons button {
+    width: 100%;
+    max-width: 200px;
+    padding: 10px;
+  }
+
+  .image-section img:first-child {
+    width: 220px;
+    height: 220px;
+  }
+
+  .image-section img:nth-child(2) {
+    width: 250px;
+    height: 250px;
+  }
+
+  .slide-controls {
+    gap: 12px;
+  }
+
+  .arrow-btn {
+    font-size: 26px;
+  }
+
+  .number {
+    font-size: 18px;
+  }
+
+  .card-content h2 {
+    font-size: 22px;
+  }
+
+  .cart-btn {
+    margin-left: 0;
+    width: 120px;
+  }
+
+
+  .todays-menu-page .see-all-btn {
+    width: 100%;
+    max-width: 260px;
+  }
+
+  .menuSliders-left,
+  .menuSliders-right,
+  .masterchef-left,
+  .masterchef-right {
+    display: none;
+  }
+
+  .menuSliders-track,
+  .masterchef-track {
+    max-width: 100%;
+    padding: 0 16px;
+  }
+
+  .menuSliders-card {
+    flex: 0 0 210px;
+    width: 210px;
+    min-width: 210px;
+  }
+
+  .footer-bottom {
+    padding: 18px 16px;
+  }
+
+  .footer-bottom p {
+    font-size: 12px;
+  }
+
+  .contact-hero-content h1,
+  .menu-hero-content h1,
+  .about-hero-content h1,
+  .faq-hero-content h1,
+  .cart-hero-content h1,
+  .checkout-hero-content h1 {
+    font-size: 32px;
+  }
+
+  .breadcrumb,
+  .menu-breadcrumb,
+  .about-breadcrumb,
+  .faq-breadcrumb,
+  .cart-breadcrumb,
+  .checkout-breadcrumb {
+    font-size: 14px;
+    flex-wrap: wrap;
+  }
+
+  .menu-item-top h3,
+  .price {
+    font-size: 17px;
+  }
+
+  .menu-item p {
+    font-size: 14px;
+  }
+
+  .cart-modal-buttons {
+    grid-template-columns: 1fr;
+  }
+
+  .test-wrapper {
+    margin-top: 64px;
+  }
+
+  .image-section {
+    min-height: 240px;
+    overflow: hidden;
+  }
+
+  .slide-controls {
+    left: 0;
+  }
+
+  .login-panel {
+    padding: 40px 18px 28px;
+  }
+
+  .contact-hero,
+  .menu-hero,
+  .about-hero,
+  .faq-hero,
+  .cart-hero,
+  .checkout-hero {
+    height: 260px;
+  }
+
+  .contact-hero-content h1,
+  .menu-hero-content h1,
+  .about-hero-content h1,
+  .faq-hero-content h1,
+  .cart-hero-content h1,
+  .checkout-hero-content h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+  }
+
+  .text {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+
+  .reservation-heading h1 {
+    font-size: 30px;
+  }
+
+  .card-content p {
+    font-size: 14px;
+  }
+
+  .todays-menu-page .card-content h2,
+  .todays-menu-page .selected-details h2 {
+    font-size: 18px;
+  }
+}
+
+h1, h2, h3, p, a, label, span, button, input, textarea, select {
+  overflow-wrap: break-word;
+}
+
+.reservation-input input[type="date"],
+.reservation-input input[type="time"] {
+  color: #ffffff;
+  color-scheme: dark;
+}
+
+.signin-btn:disabled,
+.place-order-btn:disabled,
+.reservation-button button:disabled,
+.reservation-button-wrapper button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+ /* ==========================================================================
+   ORDER SUCCESS POPUP MODAL STYLES 
+   ========================================================================== */
+
+.order-success-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.55);
+  z-index: 3000; /* Keeps overlay above navbar overlays */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(2px);
+}
+
+.order-success-panel {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 40px 35px;
+  box-sizing: border-box;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  text-align: center;
+  animation: modalScaleUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalScaleUp {
+  from {
+    transform: scale(0.85);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.order-success-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: #f5f5f5;
+  color: #666666;
+  font-size: 20px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.order-success-close:hover {
+  background: #ebebeb;
+}
+
+.success-icon-wrap {
+  margin-bottom: 20px;
+}
+
+.success-checkmark-icon {
+  font-size: 64px;
+  color: #067647; /* Standard green color used in form-status success */
+}
+
+.order-success-content h1 {
+  margin: 0 0 10px;
+  color: #222222;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.success-subtitle {
+  margin: 0 0 24px;
+  color: #666666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.order-summary-box {
+  background: #f9f7ee; /* Cohesive palette background color match */
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 28px;
+  border: 1px dashed #87805e40;
+}
+
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.summary-row:last-child {
+  margin-bottom: 0;
+}
+
+.summary-label {
+  font-size: 13px;
+  color: #666666;
+}
+
+.summary-value {
+  font-size: 14px;
+  color: #222222;
+  font-weight: 600;
+}
+
+.summary-value.bold-text {
+  color: #87805e;
+  font-weight: 700;
+}
+
+.estimated-time {
+  color: #067647;
+  font-weight: 700;
+}
+
+.order-success-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.primary-success-btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 8px;
+  background: #87805e; /* Standard brown brand color match */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.primary-success-btn:hover {
+  background: #716b4e;
+}
+
+.secondary-success-btn {
+  width: 100%;
+  height: 46px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #444444;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.secondary-success-btn:hover {
+  background: #f9f7ee;
+  border-color: #87805e;
+  color: #87805e;
 }

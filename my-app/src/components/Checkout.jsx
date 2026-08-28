@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import {
   FiUser,
@@ -6,6 +6,8 @@ import {
   FiPhone,
   FiMapPin,
   FiCreditCard,
+  FiX,
+  FiCheckCircle,
 } from "react-icons/fi";
 
 import Navbar from "./Navbar";
@@ -15,6 +17,8 @@ import Footer from "./Footer";
 
 import "./style.css";
 import { useCart } from "../Context/CartContext";
+import { useAuth } from "../Context/AuthContext";
+import { api } from "../api";
 
 const Checkout = () => {
   const {
@@ -22,22 +26,34 @@ const Checkout = () => {
     subtotal,
     clearCart,
   } = useCart();
-
+  const { user, token } = useAuth();
+ const [isSuccessOpen, setIsSuccessOpen] = useState(false);
   const navigate = useNavigate();
-
+ const [totalamount, setTotalamount] = useState()
   const [payment, setPayment] = useState("cash");
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState("");
 
   const delivery = subtotal > 0 ? 150 : 0;
   const total = subtotal + delivery;
-
+const [generatedOrderId, setGeneratedOrderId] = useState("");
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+    name: user?.name || "",
+    email: user?.email || "",
     phone: "",
     address: "",
     city: "",
     notes: "",
   });
+
+  useEffect(() => {
+    if (!user) return;
+    setFormData((prev) => ({
+      ...prev,
+      name: prev.name || user.name,
+      email: prev.email || user.email,
+    }));
+  }, [user]);
 
   const handleChange = (e) => {
     setFormData({
@@ -46,21 +62,55 @@ const Checkout = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
 
     if (cart.length === 0) {
       return;
     }
 
-    alert("Your order has been placed successfully!");
+    setBusy(true);
+setTotalamount(total)
+    try {
+      await api("/orders", {
+        method: "POST",
+        token,
+        body: {
+          customer: formData,
+          items: cart.map((item) => ({
+            id: String(item.id),
+            name: item.name,
+            price: item.price,
+            quantity: item.quantity,
+            image: item.image || "",
+          })),
+          paymentMethod: payment,
+          subtotal,
+          delivery,
+          total,
+        },
+      });
 
-    clearCart();
-
-    navigate("/");
+      clearCart();
+      // Save ID if your backend sends it back (fallback to random string for UI demonstration)
+      setGeneratedOrderId( "ORD-" + Math.floor(100000 + Math.random() * 900000));
+      
+      // Open our newly added successful popup structure
+      setIsSuccessOpen(true);
+    } catch (err) {
+      setError(err.message);
+    } finally {
+      setBusy(false);
+    }
   };
 
-  if (cart.length === 0) {
+  const handleCloseSuccessModal = () => {
+    setIsSuccessOpen(false);
+    setTotalamount("")
+    navigate("/menu");
+  };
+  if (cart.length === 0 && !isSuccessOpen) {
     return (
       <div className="checkout-page">
 
@@ -396,11 +446,14 @@ const Checkout = () => {
             </div>
 
 
+            {error && <p className="form-status error">{error}</p>}
+
             <button
               type="submit"
               className="place-order-btn"
+              disabled={busy}
             >
-              Place Order
+              {busy ? "Placing order..." : "Place Order"}
             </button>
 
           </div>
@@ -408,7 +461,59 @@ const Checkout = () => {
         </form>
 
       </section>
+ {isSuccessOpen && (
+        <div className="order-success-overlay">
+          <div className="order-success-panel">
+            <button className="order-success-close" onClick={handleCloseSuccessModal}>
+              <FiX />
+            </button>
+            
+            <div className="order-success-content">
+              <div className="success-icon-wrap">
+                <FiCheckCircle className="success-checkmark-icon" />
+              </div>
+              
+              <h1>Order Placed!</h1>
+              <p className="success-subtitle">
+                Thank you for your purchase. Your order has been received and is being prepared.
+              </p>
 
+              <div className="order-summary-box">
+                <div className="summary-row">
+                  <span className="summary-label">Order ID:</span>
+                  <span className="summary-value bold-text">{generatedOrderId}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-label">Total Amount:</span>
+                  <span className="summary-value">Rs. {totalamount}</span>
+                </div>
+                <div className="summary-row">
+                  <span className="summary-label">Delivery Window:</span>
+                  <span className="summary-value estimated-time">35 - 45 Mins</span>
+                </div>
+              </div>
+
+              <div className="order-success-actions">
+                <button 
+                  className="primary-success-btn"
+                  onClick={() => {
+  setTotalamount("");
+  navigate("/");
+}}
+                >
+                  Go to home page
+                </button>
+                <button 
+                  className="secondary-success-btn"
+                  onClick={handleCloseSuccessModal}
+                >
+                  Continue Shopping
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <Footer />
 
     </div>
