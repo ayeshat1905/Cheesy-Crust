@@ -3392,6 +3392,7 @@ justify-self: start;
 .menu-item-name:hover {
   color: #87805e;
 }
+
 /* =========================================================
    MENU DETAIL PAGE
 ========================================================= */
@@ -3480,12 +3481,22 @@ justify-self: start;
 .menu-detail-image-box {
   width: 100%;
   min-height: 500px;
-  display: flex;
+  height: 200px;
+  width:200px;
+  display: grid;
   align-items: center;
   justify-content: center;
   position: relative;
 }
-
+.menu-detail-image-box img {
+  margin-left: 150px;
+  height: 430px;
+  width: 430px;
+  z-index: 1;
+  position: relative;
+  border-radius: 10px;
+}
+/* 
 .menu-detail-image-box::before {
   content: "";
   position: absolute;
@@ -3505,12 +3516,12 @@ justify-self: start;
   filter: drop-shadow(0 20px 20px rgba(0, 0, 0, 0.14));
   animation: detailFoodFloat 4s ease-in-out infinite;
   transition: transform 0.5s ease, filter 0.5s ease;
-}
-
+} */
+/*  
 .menu-detail-image-box:hover img {
   transform: scale(1.08) rotate(5deg);
   filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.2));
-}
+}  */
 
 /* INFO */
 
